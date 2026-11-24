@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "needs_clarification",
+    "question"
+  ],
+  "properties": {
+    "needs_clarification": {
+      "type": "boolean"
+    },
+    "question": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "title",
+            "options"
+          ],
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "options": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 5,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "label",
+                  "preferred_format"
+                ],
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "preferred_format": {
+                    "type": "string",
+                    "enum": [
+                      "",
+                      "course",
+                      "article",
+                      "document",
+                      "podcast"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

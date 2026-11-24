@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: reco
+      POSTGRES_DB: reco
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-local-demo-only}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U reco -d reco"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  recommender:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql://reco:${POSTGRES_PASSWORD:-local-demo-only}@postgres:5432/reco}
+      BACKUP_PATH: /data/alfa_course_hackathon.backup
+      EMBEDDING_BACKEND: ${EMBEDDING_BACKEND:-semantic}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-BAAI/bge-m3}
+      EMBEDDING_MAX_LENGTH: ${EMBEDDING_MAX_LENGTH:-512}
+      EMBEDDING_BATCH_SIZE: ${EMBEDDING_BATCH_SIZE:-4}
+      EMBEDDING_DEVICE: ${EMBEDDING_DEVICE:-cpu}
+      USE_PRECOMPUTED_EMBEDDINGS: ${USE_PRECOMPUTED_EMBEDDINGS:-1}
+      LLM_PROVIDER: ${LLM_PROVIDER:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      OLLAMA_URL: ${OLLAMA_URL:-}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-}
+      HTTP_PROXY: ${RECO_PROXY_URL:-}
+      HTTPS_PROXY: ${RECO_PROXY_URL:-}
+      http_proxy: ${RECO_PROXY_URL:-}
+      https_proxy: ${RECO_PROXY_URL:-}
+      NO_PROXY: localhost,127.0.0.1,::1,[::1],postgres,host.docker.internal
+      no_proxy: localhost,127.0.0.1,::1,[::1],postgres,host.docker.internal
+    volumes:
+      - ./data:/data:ro
+      # Linux-тома Docker: symlink индекса/кеша не зависят от NTFS и прав Windows-хоста.
+      - reco_artifacts:/app/artifacts
+      - reco_models:/app/models
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60m
+volumes:
+  postgres_data:
+  reco_artifacts:
+  reco_models:

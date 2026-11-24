@@ -1,0 +1,63 @@
+{
+  "status": "Draft seed judgments by the implementation author, not expert ground truth. Unlisted items are unjudged; reported metrics treat them as 0. Expand and review before using results in a presentation.",
+  "profiles": [
+    {
+      "id": "start-ip",
+      "task": "Хочу открыть бизнес и зарегистрировать ИП",
+      "stage": "Запускаю бизнес",
+      "topics": ["Регистрация бизнеса", "Первые шаги"],
+      "relevance": {
+        "article:436d99ec-50d7-4abc-a0ed-ddd2f7d122d9": 3,
+        "article:41b2acff-d220-4e81-a90f-706444ce22c2": 3,
+        "article:1e3e386a-be8e-44cd-9be8-5ea74fee77b4": 3,
+        "course:3d17b03e-0e69-44cf-aa04-110e92437016": 2,
+        "course:552c492d-fac3-43f6-97f4-7a2d2625744c": 2
+      }
+    },
+    {
+      "id": "marketing",
+      "task": "Как продвигать бизнес в социальных сетях и привлекать клиентов",
+      "topics": ["Маркетинг"],
+      "relevance": {
+        "article:902ff81d-ab85-454a-977e-a7dd219c80cd": 3,
+        "article:b53f49f7-23dc-4ce0-9706-56aac7240074": 2,
+        "article:f70c43ee-bc3d-48d0-bf24-abdeca927b48": 2,
+        "course:8be9c4dc-d301-4af3-9548-0a091b8cf441": 3,
+        "course:eb371f34-34ea-4cb3-991a-cbbea147eda2": 2
+      }
+    },
+    {
+      "id": "tax-marketplace",
+      "task": "Хочу разобраться с УСН и налоговым учетом продаж на маркетплейсах",
+      "topics": ["Налоги и законы", "Финансы"],
+      "relevance": {
+        "course:28e2a868-0b58-4fd6-af4d-7aa268ae91b4": 3,
+        "article:c4849a96-cf65-4707-a742-bb9171e6cab3": 3,
+        "document:6ba5c1c7-f374-4e3e-8616-c48c4198a23e": 2,
+        "article:6b3a0b39-c29c-4d19-b89f-e577815c168a": 1
+      }
+    },
+    {
+      "id": "team",
+      "task": "Как управлять командой и нанимать сотрудников",
+      "topics": ["Управление командой"],
+      "relevance": {
+        "course:a25c8282-94c7-458e-abf6-9fbd7b996ef7": 3,
+        "article:0f4b5720-a406-4813-89b1-df921a375d6d": 3,
+        "course:26ae5eeb-9d81-4bfc-85d6-1086d9ab5a44": 2
+      }
+    },
+    {
+      "id": "finance",
+      "task": "Как вести учет доходов и расходов бизнеса и избежать кассового разрыва",
+      "topics": ["Финансы и учет", "Финансы"],
+      "relevance": {
+        "document:6ba5c1c7-f374-4e3e-8616-c48c4198a23e": 3,
+        "document:882e2e2b-f4a1-4465-b28f-82a862562d21": 2,
+        "podcast:296e7be7-e4ff-4ed9-9302-7f3dacad8d8b": 3,
+        "podcast:6752f508-4aec-4aed-bd2e-fc7f494d178d": 2,
+        "course:b2dea4ba-b84b-4b07-9f81-f2fcc2cc6f58": 2
+      }
+    }
+  ]
+}

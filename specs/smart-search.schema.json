@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SmartSearchRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "task": {
+      "type": "string",
+      "maxLength": 2000,
+      "default": ""
+    },
+    "profile_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^(anon|user):[A-Za-z0-9_-]{1,100}$"
+    },
+    "answers": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "stage": {
+          "type": "string",
+          "enum": [
+            "beginner",
+            "owner",
+            "growth"
+          ]
+        },
+        "goal": {
+          "type": "string",
+          "enum": [
+            "launch",
+            "marketing",
+            "finance",
+            "team",
+            "operations"
+          ]
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "overview",
+            "tool",
+            "course"
+          ]
+        }
+      }
+    },
+    "skip_questions": {
+      "type": "boolean",
+      "default": false
+    },
+    "use_llm": {
+      "type": "boolean",
+      "default": false
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "experience": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "search_mode": {
+      "type": "string",
+      "enum": [
+        "normal",
+        "smart"
+      ],
+      "default": "normal"
+    },
+    "clarifications": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "maxItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4096
+      }
+    }
+  }
+}
